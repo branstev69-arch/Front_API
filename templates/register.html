@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="https://cdn.tailwindcss.com"></script>
+<title>Registro</title>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div class="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
+    <h1 class="text-2xl font-semibold text-center mb-6">Registro de Usuario</h1>
+
+    {% if message %}
+      <div class="mb-4 p-3 bg-red-100 text-red-700 rounded">
+        {{ message }}
+      </div>
+    {% endif %}
+
+    <form method="post" action="{{ url_for('do_register') }}" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Nombre completo</label>
+        <input name="full_name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" placeholder="Juan Pérez"/>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Usuario</label>
+        <input name="username" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" placeholder="juan.perez"/>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Contraseña</label>
+        <input name="password" type="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" placeholder="••••••••"/>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Email</label>
+        <input name="email" type="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" placeholder="juan@ejemplo.com"/>
+      </div>
+      <div class="flex items-center justify-between">
+        <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition">Registrarse</button>
+        <a href="{{ url_for('index') }}" class="text-sm text-gray-500 hover:underline">Ya tengo cuenta</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

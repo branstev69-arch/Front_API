@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="https://cdn.tailwindcss.com"></script>
+<title>{{ title }}</title>
+</head>
+<body class="bg-gray-50 min-h-screen p-6">
+  <div class="max-w-2xl mx-auto">
+    <div class="bg-white shadow rounded-lg p-6">
+      <h1 class="text-xl font-semibold mb-4">{{ title }}</h1>
+      <form method="post" action="{{ action }}">
+        <div class="mb-2"><label class="block text-sm">Nombre</label><input name="nombre_producto" class="w-full border px-2 py-1" value="{{ producto.get('nombre_producto','') }}"></div>
+        <div class="mb-2"><label class="block text-sm">Precio</label><input name="precio" class="w-full border px-2 py-1" value="{{ producto.get('precio','') }}"></div>
+        <div class="mb-2"><label class="block text-sm">Stock</label><input name="stock" class="w-full border px-2 py-1" value="{{ producto.get('stock','') }}"></div>
+        <div class="mb-2"><label class="block text-sm">id_categoria</label><input name="id_categoria" class="w-full border px-2 py-1" value="{{ producto.get('id_categoria','') }}"></div>
+        <div class="mb-2"><label class="block text-sm">id_descuento</label><input name="id_descuento" class="w-full border px-2 py-1" value="{{ producto.get('id_descuento','') }}"></div>
+        <div class="mb-2"><label class="block text-sm">id_iva</label><input name="id_iva" class="w-full border px-2 py-1" value="{{ producto.get('id_iva','') }}"></div>
+        <div class="mb-2"><label class="block text-sm">id_proveedor</label><input name="id_proveedor" class="w-full border px-2 py-1" value="{{ producto.get('id_proveedor','') }}"></div>
+        <div class="mt-4">
+          <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded">Enviar</button>
+          <a href="{{ url_for('productos_ui') }}" class="ml-2 text-gray-600">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

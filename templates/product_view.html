@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="https://cdn.tailwindcss.com"></script>
+<title>Producto {{ producto_id }}</title>
+</head>
+<body class="bg-gray-50 min-h-screen p-6">
+  <div class="max-w-2xl mx-auto">
+    <div class="bg-white shadow rounded-lg p-6">
+      <h1 class="text-xl font-semibold mb-4">Producto {{ producto_id }}</h1>
+      {% if producto %}
+        <pre class="bg-gray-100 p-4 rounded">{{ producto | tojson(indent=2) }}</pre>
+        <a href="{{ url_for('productos_edit', pid=producto_id) }}" class="bg-yellow-500 px-3 py-1 rounded text-white">Editar</a>
+        <form method="post" action="{{ url_for('productos_delete', pid=producto_id) }}" style="display:inline-block;margin-left:8px;">
+          <button type="submit" class="text-red-600">Eliminar</button>
+        </form>
+      {% else %}
+        <p class="text-sm text-gray-600">Producto no encontrado.</p>
+      {% endif %}
+      <p class="mt-4"><a href="{{ url_for('productos_ui') }}" class="text-gray-600">Volver</a></p>
+    </div>
+  </div>
+</body>
+</html>

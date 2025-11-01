@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="https://cdn.tailwindcss.com"></script>
+<title>Lista de Productos</title>
+</head>
+<body class="bg-gray-50 min-h-screen p-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="bg-white shadow rounded-lg p-6 mb-6">
+      <h1 class="text-2xl font-semibold mb-4">Productos</h1>
+      <a href="{{ url_for('productos_new') }}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Crear producto</a>
+      <a href="{{ url_for('productos_ui') }}" class="ml-2 text-sm text-gray-600 hover:underline">Volver</a>
+    </div>
+
+    <div class="bg-white shadow rounded-lg p-6">
+      {% if productos %}
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead><tr>
+          <th class="px-4 py-2 text-left">ID</th><th class="px-4 py-2 text-left">Nombre</th><th class="px-4 py-2 text-left">Precio</th><th class="px-4 py-2 text-left">Stock</th><th class="px-4 py-2 text-left">Acciones</th>
+        </tr></thead>
+        <tbody>
+          {% for p in productos %}
+          <tr class="border-t">
+            <td class="px-4 py-2">{{ p.get('id') or p.get('id_producto') or loop.index }}</td>
+            <td class="px-4 py-2">{{ p.get('nombre_producto') or p.get('nombre') or '-' }}</td>
+            <td class="px-4 py-2">{{ p.get('precio') or p.get('precio_unitario') or '-' }}</td>
+            <td class="px-4 py-2">{{ p.get('stock') or '-' }}</td>
+            <td class="px-4 py-2">
+              <a href="{{ url_for('productos_view', pid=(p.get('id') or p.get('id_producto') )) }}" class="text-indigo-600 hover:underline">Ver / Editar</a>
+              <form method="post" action="{{ url_for('productos_delete', pid=(p.get('id') or p.get('id_producto'))) }}" style="display:inline-block;margin-left:8px;">
+                <button type="submit" class="text-red-600">Eliminar</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p class="text-sm text-gray-600">No hay productos o error al obtenerlos.</p>
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html>
